@@ -48,8 +48,8 @@ async function generate () {
   )
 
   const feed = new Feed({
-    title: 'Enhance Blog Template',
-    description: "My blog description.",
+    title: 'Book Recs by Simon MacDonald',
+    description: "Your human goodreads",
     id: hostname,
     link: hostname,
     language: 'en',

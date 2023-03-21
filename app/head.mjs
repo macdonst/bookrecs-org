@@ -5,7 +5,7 @@ export default function Head() {
     <!DOCTYPE html>
     <html lang='en'>
       <head>
-        <title>Enhance Blog Template</title>
+        <title>Book Recs by Simon MacDonald</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${getLinkTag()}
         <link rel='stylesheet' href='/_public/css/global.css' />
