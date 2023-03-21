@@ -3,7 +3,7 @@ export default function ({ html, state }) {
   const { store } = state
   const { post } = store
   const { frontmatter } = post
-  const { published = '', title = '' } = frontmatter
+  const { published = '', title = '', rating = '' } = frontmatter
 
   return html`
       <site-layout>
@@ -11,6 +11,7 @@ export default function ({ html, state }) {
           <h1 class="font-heading font-bold mb0 mb4-lg text3 text5-lg tracking-1 leading1 text-center">${title}</h1>
           <p class='text-center mb0 mb4-lg'>${published}</p>
           <section slot="doc">${post.html}</section>
+          <p class='mb0 mb4-lg'>${rating} out of 5 stars</p>
         </article>
       </site-layout>
   `

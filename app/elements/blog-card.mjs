@@ -2,7 +2,7 @@ export default function BlogPost({ html, state }) {
   const { attrs, store } = state
   const { key } = attrs
   const { href, frontmatter } = store.posts[key]
-  const { description, published, readtime, title } =
+  const { description, published, rating, title } =
     frontmatter
   return html`
     <style>
@@ -22,7 +22,7 @@ export default function BlogPost({ html, state }) {
           <p class="mb0">${description}</p>
           <p class="text-1 tracking1">
             ${published}<br />
-            ${readtime} to read
+            ${rating} out of 5 stars
           </p>
         </div>
       </article>
