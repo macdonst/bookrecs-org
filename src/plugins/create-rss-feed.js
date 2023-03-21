@@ -3,7 +3,6 @@ const { brotliCompressSync } = require('zlib')
 const base = join(__dirname, '..', '..', 'app', 'blog', 'posts')
 
 function getHostname() {
-  console.log("url", process.env.BEGIN_URL)
   return process.env.BEGIN_URL ? process.env.BEGIN_URL : 'http://localhost:3333'
 }
 
