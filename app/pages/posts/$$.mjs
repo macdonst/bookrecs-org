@@ -20,20 +20,19 @@ export default function ({ html, state }) {
             <p>Found some problems!</p>
             <ul>${problems.form}</ul>
           </div>
-          <enhance-fieldset legend="Comment">
-          <enhance-text-input label="Name" type="text" id="name" name="name" value="${comment?.name}" errors="${problems?.name?.errors}"></enhance-text-input>
-          <enhance-text-input label="Email" type="email" id="email" name="email" value="${comment?.email}" errors="${problems?.email?.errors}"></enhance-text-input>
-          <enhance-text-input label="Comment" type="text" id="comment" name="comment" value="${comment?.comment}" errors="${problems?.comment?.errors}"></enhance-text-input>
-          <input type="hidden" id="slug" name="slug" value="${slug}" />
-          <input type="hidden" id="key" name="key" value="${comment?.key}" />
-          <enhance-submit-button style="float: right"><span slot="label">Save</span></enhance-submit-button>
-          </enhance-fieldset>
+          <field-set legend="Comment">
+            <text-input label="Name" type="text" id="name" name="name" value="${comment?.name}" errors="${problems?.name?.errors}"></text-input>
+            <text-input label="Email" type="email" id="email" name="email" value="${comment?.email}" errors="${problems?.email?.errors}"></text-input>
+            <text-area label="Comment" type="text" id="comment" name="comment" value="${comment?.comment}" errors="${problems?.comment?.errors}"></text-area>
+            <input type="hidden" id="slug" name="slug" value="${slug}" />
+            <input type="hidden" id="key" name="key" value="${comment?.key}" />
+            <submit-button style="float: right"></submit-button>
+          </field-set>
         </enhance-form>
-        <h3 class="font-heading font-bold mt1 text1 text3-lg tracking-1 leading1">${comments.length} comments:</h3>
+        <h2 class="font-heading mt4 pl0 pr0 pl5-lg pr5-lg text1 text3-lg tracking-1 leading1">${comments.length} ${comments.length === 1 ? 'comment' : 'comments'}:</h2>
         <dl class="font-body leading4 m-auto p0 p5-lg">
-          ${comments.map(comment => `<dt class="font-bold mb-6">${comment.name}</dt>
-            <dd class="">${comment.comment}</dd>
-            <dd class="mb1">${comment.date}</dd>`).join('')}
+          ${comments.map(comment => `<dt class="mb-6"><span class='font-semibold'>${comment.name}</span> <span class='text-1'>on ${comment.date}</span></dt>
+            <dd class="mb4">${comment.comment}</dd>`).join('')}
         </dl>
       </site-layout>
   `
