@@ -3,10 +3,10 @@ import { URL } from 'url'
 import { Arcdown } from 'arcdown'
 import HljsLineWrapper from '../../lib/hljs-line-wrapper.mjs'
 import { default as defaultClassMapping } from '../../lib/markdown-class-mappings.mjs'
+import { getComments } from '../../models/comments.mjs'
 
 /** @type {import('@enhance/types').EnhanceApiFn} */
 export async function get(req) {
-
   // reinvoked each req so no weird regexp caching
   const arcdown = new Arcdown({
     pluginOverrides: {
@@ -39,9 +39,14 @@ export async function get(req) {
   }
   const post = await arcdown.render(docMarkdown)
 
+  const comments = (await getComments()).filter(comment => comment.slug === req.path)
+  console.log(comments)
+
   return {
     json: {
-      post
+      comments,
+      post,
+      slug: req.path
     },
   }
 }
