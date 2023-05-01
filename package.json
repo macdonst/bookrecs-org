@@ -29,9 +29,9 @@
     }
   },
   "dependencies": {
-    "@enhance/arc-plugin-enhance": "^5.0.1",
-    "@enhance/arc-plugin-posse": "^0.0.7",
-    "arcdown": "^2.1.0",
+    "@enhance/arc-plugin-enhance": "^5.0.5",
+    "@enhance/arc-plugin-posse": "^0.2.0",
+    "arcdown": "^2.1.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "reading-time": "^1.5.0"
