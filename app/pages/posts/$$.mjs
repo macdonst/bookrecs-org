@@ -7,9 +7,9 @@ export default function ({ html, state }) {
 
   return html`
       <site-layout>
-        <article class="font-body leading4 m-auto p0 p5-lg">
-          <h1 class="font-heading font-bold mb0 mb4-lg text3 text5-lg tracking-1 leading1 text-center">${title}</h1>
-          <p class='text-center mb0 mb4-lg'>${published}</p>
+      <article class="h-entry font-body leading4 mi-auto pb0 pb4-lg">
+          <h1 class="p-name font-heading font-bold mbe0 text4 tracking-1 leading1">${title}</h1>
+          <p class='date dt-published mbe4'>${published}</p>
           <section slot="doc">${post.html}</section>
           <p class='mb0 mb4-lg'>${rating} out of 5 stars</p>
         </article>

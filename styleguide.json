@@ -1,9 +1,22 @@
 {
-  "base": 16,
-  "scale": {
-    "ratio": "minorThird",
-    "steps": 12
-  },
+  "typeScale": {
+		"steps": 12,
+		"viewportMin": 320,
+		"viewportMax": 1500,
+		"baseMin": 16,
+		"baseMax": 16,
+		"scaleMin": "perfect-fourth",
+		"scaleMax": "perfect-fourth"
+	},
+	"spaceScale": {
+		"steps": 12,
+		"viewportMin": 320,
+		"viewportMax": 1500,
+		"baseMin": 16,
+		"baseMax": 16,
+		"scaleMin": "perfect-fourth",
+		"scaleMax": "perfect-fourth"
+	},
   "properties": {
     "font-body": "Avenir, 'Avenir Next LT Pro', Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;",
     "font-heading": "Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif;",
