@@ -42,6 +42,8 @@ jobs:
           begin_token: ${{ secrets.BEGIN_TOKEN }}
           begin_env_name: staging
           channel: 'main'
+          begin_args: '--staging'
+          log: 'verbose'
 
   # Deploy the build
   deploy_production:
@@ -77,3 +79,5 @@ jobs:
           begin_token: ${{ secrets.BEGIN_TOKEN }}
           begin_env_name: production
           channel: 'main'
+          begin_args: '--staging'
+          log: 'verbose'
