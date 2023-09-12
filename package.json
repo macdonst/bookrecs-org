@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@enhance/arc-plugin-enhance": "^6.2.2",
-    "@enhance/arc-plugin-posse": "^0.2.2",
+    "@enhance/arc-plugin-posse": "^0.3.0",
     "arcdown": "^2.2.0",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
