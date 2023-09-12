@@ -20,3 +20,6 @@ config styleguide.json
 
 @begin
 appID 6K8HBLST
+
+@aws
+runtime nodejs18.x
