@@ -5,11 +5,13 @@
     "posts": "node ./src/plugins/create-post-metadata.js",
     "rss": "node ./src/plugins/create-rss-feed.js",
     "start": "npx enhance dev",
-    "lint": "eslint ./app/**/*.mjs --fix"
+    "lint": "eslint ./app/**/*.mjs --fix",
+    "test": "npm run lint"
   },
   "devDependencies": {
-    "@enhance/cli": "^1.0.4",
-    "@enhance/types": "^0.6.1",
+    "@architect/architect": "^11.1.0",
+    "@enhance/cli": "^1.2.1",
+    "@enhance/types": "^0.7.0",
     "eslint": "^8.49.0"
   },
   "eslintConfig": {
@@ -31,7 +33,7 @@
   },
   "dependencies": {
     "@enhance/arc-plugin-enhance": "^6.2.2",
-    "@enhance/arc-plugin-posse": "^0.3.0",
+    "@enhance/arc-plugin-posse": "^0.3.1",
     "arcdown": "^2.2.0",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
