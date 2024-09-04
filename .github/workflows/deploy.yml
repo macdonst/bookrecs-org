@@ -11,10 +11,55 @@ jobs:
 
     # Go
     steps:
-      - name: Build App
-        uses: architect/action-build@v3
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ inputs.node-version }}
+
+      - name: Env
+        shell: bash
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Git ref:    ${{ github.ref }}"
+          echo "GH actor:   ${{ github.actor }}"
+          echo "SHA:        ${{ github.sha }}"
+          VER=`node --version`; echo "Node ver:   $VER"
+          VER=`npm --version`; echo "npm ver:    $VER"
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: ${{ inputs.use_lock_file }}
+
+      - name: Install Architect
+        shell: bash
+        run: npm install @architect/architect
+
+      - name: Create blog post metadata
+        run: npm run posts
+
+      - name: Create RSS feed
+        run: npm run rss
+        env:
+          BEGIN_URL: ${{ secrets.BEGIN_URL_STAGING }}
+
+      - name: Vendor dist files
+        shell: bash
+        run: npm run dist --if-present
+
+      - name: Hydrate
+        shell: bash
+        run: npx arc hydrate
+
+      - name: Test
+        shell: bash
+        run: npm test
 
   # Assuming all that went fine (and it's main): deploy!
   deploy:
@@ -25,9 +70,50 @@ jobs:
 
     # Go
     steps:
-      - name: Deploy app
-        uses: architect/action-deploy@v1
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
-          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          node-version: 20
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: ${{ inputs.use_lock_file }}
+
+      - name: Install Architect
+        shell: bash
+        run: npm install @architect/architect
+
+      - name: Create blog post metadata
+        run: npm run posts
+
+      - name: Create RSS feed
+        run: npm run rss
+        env:
+          BEGIN_URL: ${{ secrets.BEGIN_URL_PRODUCTION }}
+
+      - name: Vendor dist files
+        shell: bash
+        run: npm run dist --if-present
+
+      - name: Staging Deploy
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: npx arc deploy --staging
+        env:
+          AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
+          AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
+
+      - name: Production Deploy
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
+        run: npx arc deploy --production
+        env:
+          AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
+          AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
