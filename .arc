@@ -13,7 +13,7 @@ create-rss-feed
 @posse
 feed "https://bookrecs.org/rss"
 rate "5 minutes"
-since "2023-04-19"
+since "2024-09-04"
 
 @enhance-styles
 config styleguide.json
