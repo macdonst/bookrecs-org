@@ -18,8 +18,5 @@ since "2024-09-04"
 @enhance-styles
 config styleguide.json
 
-@begin
-appID 6K8HBLST
-
 @aws
 runtime nodejs20.x
