@@ -22,4 +22,4 @@ config styleguide.json
 appID 6K8HBLST
 
 @aws
-runtime nodejs18.x
+runtime nodejs20.x
